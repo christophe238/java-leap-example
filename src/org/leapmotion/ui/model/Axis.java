@@ -14,6 +14,13 @@ import javax.vecmath.Point3f;
 
 import org.leapmotion.ui.util.Node;
 
+/**
+ * User: Christophe Marchadour
+ * Email : christophe.marchadour@gmail.com
+ * Date: 07/08/13
+ * Time: 21:34
+ * Leap motion and Java3D example
+ */
 public class Axis extends Node{
 
 	@Override

@@ -3,7 +3,13 @@ package org.leapmotion.leap.util;
 
 import com.leapmotion.leap.*;
 
-
+/**
+ * User: Christophe Marchadour
+ * Email : christophe.marchadour@gmail.com
+ * Date: 07/08/13
+ * Time: 21:34
+ * Leap motion and Java3D example
+ */
 public class LeapData {
 	private static HandList handList;
 	private static GestureList gestureList;

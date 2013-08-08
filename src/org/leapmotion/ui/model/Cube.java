@@ -21,7 +21,7 @@ import com.sun.j3d.utils.geometry.Sphere;
  * Email : christophe.marchadour@gmail.com
  * Date: 07/08/13
  * Time: 21:34
- * To change this template use File | Settings | File Templates.
+ * Leap motion and Java3D example
  */
 public class Cube extends Node{
 
