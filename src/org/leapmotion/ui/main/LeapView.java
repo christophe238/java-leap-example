@@ -72,4 +72,8 @@ public class LeapView extends JPanel{
 	public Node getScene(){
 		return scene;
 	}
+	
+	public static ViewerCamera getCamera(){
+		return camera;
+	}
 }
