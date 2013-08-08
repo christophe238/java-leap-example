@@ -1,6 +1,7 @@
 package org.leapmotion.ui.model;
 
 import javax.media.j3d.BoundingBox;
+import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.ColoringAttributes;
 import javax.media.j3d.DirectionalLight;
 import javax.media.j3d.Material;
@@ -13,6 +14,7 @@ import javax.vecmath.Color3f;
 import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
+import org.leapmotion.ui.main.LeapView;
 import org.leapmotion.ui.util.Node;
 
 import com.sun.j3d.utils.geometry.Sphere;
@@ -35,6 +37,7 @@ public class Cube extends Node{
     private Color3f [] colors		= new Color3f[24];
     private RenderingAttributes ra	= new RenderingAttributes();
     private ColoringAttributes ca	= new ColoringAttributes();
+    private DirectionalLight viewer_light = new DirectionalLight();
     
 	@Override
 	public void generate() {
@@ -123,6 +126,14 @@ public class Cube extends Node{
         light2.setColor(new Color3f(0f,1f,0f));
         light2.setDirection(new Vector3f(0,-7,0));
                 
+        viewer_light.setCapability(DirectionalLight.ALLOW_STATE_WRITE);
+        viewer_light.setCapability(DirectionalLight.ALLOW_STATE_READ);
+        viewer_light.setCapability(DirectionalLight.ALLOW_DIRECTION_WRITE);
+        viewer_light.setCapability(DirectionalLight.ALLOW_DIRECTION_READ);
+        viewer_light.setInfluencingBounds(new BoundingSphere());
+        viewer_light.setColor(new Color3f(1f,1f,1f));
+        
+        view.addChild(viewer_light);
         view.addChild(light1);
         view.addChild(light2);
         
@@ -132,6 +143,10 @@ public class Cube extends Node{
 	@Override
 	public void redisplay() {
 		//System.out.println("Cube update");
+		viewer_light.setDirection( new Vector3f((float) -LeapView.getCamera().getEye().x,
+				(float) -LeapView.getCamera().getEye().y,
+				(float) -LeapView.getCamera().getEye().z
+				));
 	}
 
 }

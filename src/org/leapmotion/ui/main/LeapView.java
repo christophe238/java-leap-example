@@ -48,6 +48,7 @@ public class LeapView extends JPanel{
         add("Center", canvas);
 	}
 	
+	@SuppressWarnings("static-access")
 	public void init(){     
         scene.generate();
         scene.compile();
@@ -56,6 +57,7 @@ public class LeapView extends JPanel{
         System.out.println("Leap view initialized");
 	}
 	
+	@SuppressWarnings("static-access")
 	public void redisplay(){
 		//System.out.println("Leap view update");
 		//Updating scene

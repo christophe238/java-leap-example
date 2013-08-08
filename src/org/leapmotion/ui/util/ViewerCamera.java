@@ -83,6 +83,15 @@ public class ViewerCamera {
         //eye.z = (float) Math.round(eye.z*100)/100;
 	}
 	
+	public Point3d getEye(){
+		return eye;
+	}
+	public Point3d getLookAt(){
+		return lookAt;
+	}
+	public Vector3d getUp(){
+		return up;
+	}
 	public Transform3D getCamera(){
         camera.lookAt(eye,lookAt,up);
         camera.invert();
