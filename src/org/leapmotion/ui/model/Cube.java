@@ -14,9 +14,12 @@ import javax.vecmath.Color3f;
 import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
+import org.leapmotion.leap.util.LeapData;
 import org.leapmotion.ui.main.LeapView;
 import org.leapmotion.ui.util.Node;
 
+import com.leapmotion.leap.Hand;
+import com.leapmotion.leap.HandList;
 import com.sun.j3d.utils.geometry.Sphere;
 /**
  * User: Christophe Marchadour
@@ -132,6 +135,7 @@ public class Cube extends Node{
         viewer_light.setCapability(DirectionalLight.ALLOW_DIRECTION_READ);
         viewer_light.setInfluencingBounds(new BoundingSphere());
         viewer_light.setColor(new Color3f(1f,1f,1f));
+        viewer_light.setEnable(false);
         
         view.addChild(viewer_light);
         view.addChild(light1);
@@ -143,10 +147,20 @@ public class Cube extends Node{
 	@Override
 	public void redisplay() {
 		//System.out.println("Cube update");
-		viewer_light.setDirection( new Vector3f((float) -LeapView.getCamera().getEye().x,
-				(float) -LeapView.getCamera().getEye().y,
-				(float) -LeapView.getCamera().getEye().z
-				));
+		HandList handList = LeapData.getHandList();
+		if(!handList.empty()){
+			if(!viewer_light.getEnable()) viewer_light.setEnable(true);
+			
+			Hand hand = handList.get(0);
+			hand.direction();
+			Vector3f direction = new Vector3f(hand.direction().getX(),hand.direction().getY(),hand.direction().getZ());
+			viewer_light.setDirection(direction);
+			
+		}
+		else if(viewer_light.getEnable()){
+			viewer_light.setEnable(false);
+		}
+		
 	}
 
 }

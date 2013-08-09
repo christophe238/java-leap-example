@@ -1,8 +1,5 @@
 package org.leapmotion.ui.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.leapmotion.ui.util.Node;
 
 /**
